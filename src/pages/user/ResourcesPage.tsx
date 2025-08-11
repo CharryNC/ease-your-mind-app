@@ -172,12 +172,12 @@ const ResourcesPage: React.FC = () => {
 
               {/* Filter Row */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <Select value={filters.category} onValueChange={(value) => handleFilterChange('category', value)}>
+                <Select value={filters.category} onValueChange={(value) => handleFilterChange('category', value === 'all' ? '' : value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Category" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Categories</SelectItem>
+                    <SelectItem value="all">All Categories</SelectItem>
                     <SelectItem value="anxiety">Anxiety</SelectItem>
                     <SelectItem value="depression">Depression</SelectItem>
                     <SelectItem value="stress">Stress Management</SelectItem>
@@ -187,12 +187,12 @@ const ResourcesPage: React.FC = () => {
                   </SelectContent>
                 </Select>
 
-                <Select value={filters.type} onValueChange={(value) => handleFilterChange('type', value)}>
+                <Select value={filters.type} onValueChange={(value) => handleFilterChange('type', value === 'all' ? '' : value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Resource Type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Types</SelectItem>
+                    <SelectItem value="all">All Types</SelectItem>
                     <SelectItem value="article">Articles</SelectItem>
                     <SelectItem value="video">Videos</SelectItem>
                     <SelectItem value="podcast">Podcasts</SelectItem>
@@ -200,12 +200,12 @@ const ResourcesPage: React.FC = () => {
                   </SelectContent>
                 </Select>
 
-                <Select value={filters.difficulty} onValueChange={(value) => handleFilterChange('difficulty', value)}>
+                <Select value={filters.difficulty} onValueChange={(value) => handleFilterChange('difficulty', value === 'all' ? '' : value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Difficulty" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Levels</SelectItem>
+                    <SelectItem value="all">All Levels</SelectItem>
                     <SelectItem value="beginner">Beginner</SelectItem>
                     <SelectItem value="intermediate">Intermediate</SelectItem>
                     <SelectItem value="advanced">Advanced</SelectItem>
