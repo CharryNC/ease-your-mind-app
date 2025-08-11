@@ -33,107 +33,109 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<Layout><LandingPage /></Layout>} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
+          <Layout>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
 
-            {/* User Protected Routes */}
-            <Route 
-              path="/dashboard" 
-              element={
-                <ProtectedRoute requiredRole="user">
-                  <Layout><DashboardPage /></Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/counsellors" 
-              element={
-                <ProtectedRoute requiredRole="user">
-                  <Layout><CounsellorListPage /></Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/booking/:counsellorId" 
-              element={
-                <ProtectedRoute requiredRole="user">
-                  <Layout><BookingPage /></Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/resources" 
-              element={
-                <ProtectedRoute requiredRole="user">
-                  <Layout><ResourcesPage /></Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/journal" 
-              element={
-                <ProtectedRoute requiredRole="user">
-                  <Layout><JournalPage /></Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/profile" 
-              element={
-                <ProtectedRoute requiredRole="user">
-                  <Layout><ProfilePage /></Layout>
-                </ProtectedRoute>
-              } 
-            />
+              {/* User Protected Routes */}
+              <Route 
+                path="/dashboard" 
+                element={
+                  <ProtectedRoute requiredRole="user">
+                    <DashboardPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/counsellors" 
+                element={
+                  <ProtectedRoute requiredRole="user">
+                    <CounsellorListPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/booking/:counsellorId" 
+                element={
+                  <ProtectedRoute requiredRole="user">
+                    <BookingPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/resources" 
+                element={
+                  <ProtectedRoute requiredRole="user">
+                    <ResourcesPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/journal" 
+                element={
+                  <ProtectedRoute requiredRole="user">
+                    <JournalPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/profile" 
+                element={
+                  <ProtectedRoute requiredRole="user">
+                    <ProfilePage />
+                  </ProtectedRoute>
+                } 
+              />
 
-            {/* Counsellor Protected Routes */}
-            <Route 
-              path="/counsellor/dashboard" 
-              element={
-                <ProtectedRoute requiredRole="counsellor">
-                  <Layout><CounsellorDashboardPage /></Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/counsellor/sessions" 
-              element={
-                <ProtectedRoute requiredRole="counsellor">
-                  <Layout><MySessionsPage /></Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/counsellor/profile" 
-              element={
-                <ProtectedRoute requiredRole="counsellor">
-                  <Layout><ProfileEditPage /></Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/counsellor/resources" 
-              element={
-                <ProtectedRoute requiredRole="counsellor">
-                  <Layout><ResourcesUploadPage /></Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/counsellor/earnings" 
-              element={
-                <ProtectedRoute requiredRole="counsellor">
-                  <Layout><EarningsPage /></Layout>
-                </ProtectedRoute>
-              } 
-            />
+              {/* Counsellor Protected Routes */}
+              <Route 
+                path="/counsellor/dashboard" 
+                element={
+                  <ProtectedRoute requiredRole="counsellor">
+                    <CounsellorDashboardPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/counsellor/sessions" 
+                element={
+                  <ProtectedRoute requiredRole="counsellor">
+                    <MySessionsPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/counsellor/profile" 
+                element={
+                  <ProtectedRoute requiredRole="counsellor">
+                    <ProfileEditPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/counsellor/resources" 
+                element={
+                  <ProtectedRoute requiredRole="counsellor">
+                    <ResourcesUploadPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/counsellor/earnings" 
+                element={
+                  <ProtectedRoute requiredRole="counsellor">
+                    <EarningsPage />
+                  </ProtectedRoute>
+                } 
+              />
 
-            {/* Catch-all route */}
-            <Route path="*" element={<Layout><NotFound /></Layout>} />
-          </Routes>
+              {/* Catch-all route */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Layout>
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
