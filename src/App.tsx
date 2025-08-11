@@ -3,24 +3,140 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import { AuthProvider } from "./contexts/AuthContext";
+import Layout from "./components/layout/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+// Pages
+import LandingPage from "./pages/LandingPage";
+import LoginPage from "./pages/auth/LoginPage";
+import SignupPage from "./pages/auth/SignupPage";
+import DashboardPage from "./pages/user/DashboardPage";
+import CounsellorListPage from "./pages/user/CounsellorListPage";
+import BookingPage from "./pages/user/BookingPage";
+import ResourcesPage from "./pages/user/ResourcesPage";
+import JournalPage from "./pages/user/JournalPage";
+import ProfilePage from "./pages/user/ProfilePage";
+import CounsellorDashboardPage from "./pages/counsellor/CounsellorDashboardPage";
+import MySessionsPage from "./pages/counsellor/MySessionsPage";
+import ProfileEditPage from "./pages/counsellor/ProfileEditPage";
+import ResourcesUploadPage from "./pages/counsellor/ResourcesUploadPage";
+import EarningsPage from "./pages/counsellor/EarningsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Layout><LandingPage /></Layout>} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+
+            {/* User Protected Routes */}
+            <Route 
+              path="/dashboard" 
+              element={
+                <ProtectedRoute requiredRole="user">
+                  <Layout><DashboardPage /></Layout>
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/counsellors" 
+              element={
+                <ProtectedRoute requiredRole="user">
+                  <Layout><CounsellorListPage /></Layout>
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/booking/:counsellorId" 
+              element={
+                <ProtectedRoute requiredRole="user">
+                  <Layout><BookingPage /></Layout>
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/resources" 
+              element={
+                <ProtectedRoute requiredRole="user">
+                  <Layout><ResourcesPage /></Layout>
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/journal" 
+              element={
+                <ProtectedRoute requiredRole="user">
+                  <Layout><JournalPage /></Layout>
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/profile" 
+              element={
+                <ProtectedRoute requiredRole="user">
+                  <Layout><ProfilePage /></Layout>
+                </ProtectedRoute>
+              } 
+            />
+
+            {/* Counsellor Protected Routes */}
+            <Route 
+              path="/counsellor/dashboard" 
+              element={
+                <ProtectedRoute requiredRole="counsellor">
+                  <Layout><CounsellorDashboardPage /></Layout>
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/counsellor/sessions" 
+              element={
+                <ProtectedRoute requiredRole="counsellor">
+                  <Layout><MySessionsPage /></Layout>
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/counsellor/profile" 
+              element={
+                <ProtectedRoute requiredRole="counsellor">
+                  <Layout><ProfileEditPage /></Layout>
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/counsellor/resources" 
+              element={
+                <ProtectedRoute requiredRole="counsellor">
+                  <Layout><ResourcesUploadPage /></Layout>
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/counsellor/earnings" 
+              element={
+                <ProtectedRoute requiredRole="counsellor">
+                  <Layout><EarningsPage /></Layout>
+                </ProtectedRoute>
+              } 
+            />
+
+            {/* Catch-all route */}
+            <Route path="*" element={<Layout><NotFound /></Layout>} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
