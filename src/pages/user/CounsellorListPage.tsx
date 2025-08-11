@@ -158,12 +158,12 @@ const CounsellorListPage: React.FC = () => {
 
               {/* Filter Row */}
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                <Select value={filters.specialization} onValueChange={(value) => handleFilterChange('specialization', value)}>
+                <Select value={filters.specialization} onValueChange={(value) => handleFilterChange('specialization', value === 'all' ? '' : value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Specialization" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Specializations</SelectItem>
+                    <SelectItem value="all">All Specializations</SelectItem>
                     <SelectItem value="anxiety">Anxiety</SelectItem>
                     <SelectItem value="depression">Depression</SelectItem>
                     <SelectItem value="stress">Stress Management</SelectItem>
@@ -173,12 +173,12 @@ const CounsellorListPage: React.FC = () => {
                   </SelectContent>
                 </Select>
 
-                <Select value={filters.ageGroup} onValueChange={(value) => handleFilterChange('ageGroup', value)}>
+                <Select value={filters.ageGroup} onValueChange={(value) => handleFilterChange('ageGroup', value === 'all' ? '' : value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Age Group" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Age Groups</SelectItem>
+                    <SelectItem value="all">All Age Groups</SelectItem>
                     <SelectItem value="teenagers">Teenagers</SelectItem>
                     <SelectItem value="young adults">Young Adults</SelectItem>
                     <SelectItem value="adults">Adults</SelectItem>
@@ -186,12 +186,12 @@ const CounsellorListPage: React.FC = () => {
                   </SelectContent>
                 </Select>
 
-                <Select value={filters.maxPrice} onValueChange={(value) => handleFilterChange('maxPrice', value)}>
+                <Select value={filters.maxPrice} onValueChange={(value) => handleFilterChange('maxPrice', value === 'any' ? '' : value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Max Price" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Any Price</SelectItem>
+                    <SelectItem value="any">Any Price</SelectItem>
                     <SelectItem value="60">Under $60</SelectItem>
                     <SelectItem value="80">Under $80</SelectItem>
                     <SelectItem value="100">Under $100</SelectItem>
