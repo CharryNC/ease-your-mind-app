@@ -216,8 +216,10 @@ const DashboardPage: React.FC = () => {
                             </p>
                           </div>
                         </div>
-                        <Button variant="calm" size="sm">
-                          View Details
+                        <Button variant="calm" size="sm" asChild>
+                          <Link to={`/session/${session.id}`}>
+                            View Details
+                          </Link>
                         </Button>
                       </div>
                     ))}

@@ -17,6 +17,8 @@ import BookingPage from "./pages/user/BookingPage";
 import ResourcesPage from "./pages/user/ResourcesPage";
 import JournalPage from "./pages/user/JournalPage";
 import ProfilePage from "./pages/user/ProfilePage";
+import CounsellorProfilePage from "./pages/user/CounsellorProfilePage";
+import SessionDetailsPage from "./pages/user/SessionDetailsPage";
 import CounsellorDashboardPage from "./pages/counsellor/CounsellorDashboardPage";
 import MySessionsPage from "./pages/counsellor/MySessionsPage";
 import ProfileEditPage from "./pages/counsellor/ProfileEditPage";
@@ -86,6 +88,22 @@ const App = () => (
                 element={
                   <ProtectedRoute requiredRole="user">
                     <ProfilePage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/counsellor/:counsellorId" 
+                element={
+                  <ProtectedRoute requiredRole="user">
+                    <CounsellorProfilePage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/session/:sessionId" 
+                element={
+                  <ProtectedRoute requiredRole="user">
+                    <SessionDetailsPage />
                   </ProtectedRoute>
                 } 
               />
